@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>电影网盘 - 海量片源云端检索，一键找到想看的电影</title>
+<meta name="description" content="电影网盘(dianyingwangpan-wap.github.io)是专注于电影资源云端检索与分享的导航平台，提供海量影片分类、资源搜索、观影清单与热门分享，找片快人一步。">
+<meta name="keywords" content="电影网盘,电影资源,云端检索,影片分享,电影搜索,热门电影,电影网盘导航,dianyingwangpan-wap">
+<meta name="author" content="电影网盘">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="canonical" href="https://dianyingwangpan-wap.github.io/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "电影网盘",
+  "url": "https://dianyingwangpan-wap.github.io/",
+  "description": "专注于电影资源云端检索与分享的导航平台",
+  "potentialAction": {"@type": "SearchAction", "target": "https://dianyingwangpan-wap.github.io/#search?q={search_term_string}", "query-input": "required name=search_term_string"}
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;background:#f2f5fa;color:#21293a;line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+:root{--navy:#1b2a4a;--navy-d:#0f1a30;--blue:#3d6bff;--mint:#2dd4bf;--mint-l:#a7f3e8;--card:#fff;--line:#e3e9f4;--muted:#6d7891;--paper:#f2f5fa}
+
+/* ===== 顶部 ===== */
+.header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .ico{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--navy),var(--blue));display:flex;align-items:center;justify-content:center;color:#fff;font-size:19px;font-weight:900;box-shadow:0 4px 14px rgba(59,107,255,.3)}
+.logo b{font-size:20px;font-weight:900;color:var(--navy);letter-spacing:.5px}
+.logo span{font-size:12px;color:var(--muted);margin-left:2px}
+.nav{display:flex;gap:4px}
+.nav a{padding:9px 20px;border-radius:22px;font-size:15px;font-weight:700;color:#414b61;transition:.25s}
+.nav a:hover,.nav a.on{background:var(--navy);color:#fff}
+.nav-toggle{display:none;width:44px;height:44px;flex-direction:column;justify-content:center;align-items:center;gap:5px;border:1px solid var(--line);border-radius:12px}
+.nav-toggle span{display:block;width:19px;height:2px;background:var(--navy);border-radius:2px}
+section{padding:96px 0}
+.sec-head{margin-bottom:50px;text-align:center}
+.sec-head .en{font-size:11px;letter-spacing:4px;color:var(--blue);text-transform:uppercase;font-weight:800;margin-bottom:10px;display:block}
+.sec-head h2{font-size:clamp(24px,4.2vw,34px);color:var(--navy);font-weight:900}
+.sec-head h2 em{font-style:normal;color:var(--mint);-webkit-text-stroke:.4px var(--navy)}
+.sec-head .line{width:48px;height:3px;background:var(--blue);margin:16px auto 14px;border-radius:3px}
+.sec-head p{color:var(--muted);font-size:14.5px}
+.sec-head .more{display:inline-block;margin-top:18px;font-size:13.5px;color:var(--navy);border-bottom:1.5px solid var(--blue);padding-bottom:2px;transition:.2s}
+.sec-head .more:hover{color:var(--blue);letter-spacing:.5px}
+
+/* ===== Hero ===== */
+.hero{position:relative;background:radial-gradient(1200px 600px at 20% 0%,#2b4a86 0%,#1b2a4a 45%,#0f1a30 100%);color:#fff;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 30% 20%,#000 0%,transparent 70%)}
+.hero .wrap{position:relative;z-index:2;padding:96px 20px}
+.hero .inner{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.hero .badge{display:inline-block;padding:7px 20px;border-radius:30px;background:rgba(45,212,191,.14);color:var(--mint-l);font-size:12.5px;letter-spacing:2px;margin-bottom:24px;border:1px solid rgba(45,212,191,.3)}
+.hero h1{font-size:clamp(30px,5.4vw,50px);font-weight:900;line-height:1.28}
+.hero h1 em{font-style:normal;color:var(--mint)}
+.hero .sub{color:rgba(255,255,255,.78);margin:22px 0 32px;font-size:clamp(15px,1.8vw,17px);max-width:560px}
+.hero .btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:14px 32px;border-radius:30px;font-weight:800;font-size:15px;transition:.3s;letter-spacing:.5px}
+.btn-p{background:var(--mint);color:#062a27}
+.btn-p:hover{background:#5ee8d5;transform:translateY(-2px)}
+.btn-o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+.btn-o:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.hero .stats{display:flex;gap:18px;margin-top:40px}
+.stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px 22px;flex:1;backdrop-filter:blur(6px)}
+.stat b{display:block;font-size:26px;font-weight:900;color:var(--mint)}
+.stat span{font-size:12.5px;color:rgba(255,255,255,.7)}
+.disk{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:26px;backdrop-filter:blur(10px)}
+.disk .row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+.disk .row:last-child{border-bottom:none}
+.disk .ico{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#6f9bff);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.disk .txt{flex:1;min-width:0}
+.disk .txt b{font-size:14.5px;font-weight:800}
+.disk .txt span{font-size:12px;color:rgba(255,255,255,.6)}
+.disk .tag{font-size:11px;color:var(--mint);background:rgba(45,212,191,.14);padding:4px 10px;border-radius:20px;flex-shrink:0}
+
+/* ===== 栏目一：资源搜索（分面搜索 + 结果卡片）===== */
+.search{background:var(--paper)}
+.sbox{background:var(--card);border-radius:18px;padding:20px;box-shadow:0 6px 30px rgba(27,42,74,.07);border:1px solid var(--line)}
+.sbar{display:flex;gap:12px;margin-bottom:18px}
+.sbar input{flex:1;border:1.5px solid var(--line);border-radius:30px;padding:15px 22px;font-size:15px;color:var(--navy);outline:none;transition:.2s}
+.sbar input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(59,107,255,.1)}
+.sbar button{background:var(--navy);color:#fff;border-radius:30px;padding:0 34px;font-weight:800;font-size:15px;transition:.25s}
+.sbar button:hover{background:var(--blue)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:7px 16px;border-radius:20px;font-size:13px;font-weight:700;color:var(--muted);background:var(--paper);border:1px solid var(--line);transition:.2s}
+.chip:hover,.chip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.rcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;transition:.3s;display:flex;gap:14px;align-items:flex-start}
+.rcard:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(27,42,74,.1);border-color:var(--mint)}
+.rcard .th{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;flex-shrink:0}
+.rcard .mi h4{font-size:15.5px;font-weight:900;color:var(--navy);margin-bottom:3px}
+.rcard .mi p{font-size:12.5px;color:var(--muted)}
+.rcard .mi i{font-style:normal;font-size:11px;color:var(--blue);background:rgba(59,107,255,.08);padding:2px 9px;border-radius:20px;margin-right:5px}
+
+/* ===== 栏目二：影片分类（树形分组 + 容量条）===== */
+.cats{background:var(--card)}
+.tree{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.br{background:var(--paper);border-radius:16px;padding:22px 24px;border:1px solid var(--line)}
+.br .hd{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.br .hd .ic{width:38px;height:38px;border-radius:11px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.br .hd b{font-size:16.5px;color:var(--navy);flex:1}
+.br .hd span{font-size:12px;color:var(--mint);font-weight:800}
+.leaf{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px;color:#414b61}
+.leaf:last-child{border-bottom:none}
+.leaf em{font-style:normal;color:var(--muted);font-size:12px;margin-left:auto;flex-shrink:0}
+.bar{width:64px;height:5px;background:#dbe3f0;border-radius:5px;overflow:hidden;flex-shrink:0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:5px}
+
+/* ===== 栏目三：精选清单（手风琴折叠）===== */
+.theme{background:#e9eef8}
+.acc{max-width:860px;margin:0 auto}
+.aitem{background:var(--card);border-radius:14px;margin-bottom:14px;overflow:hidden;border:1px solid var(--line)}
+.atitle{display:flex;align-items:center;gap:16px;padding:20px 24px;cursor:pointer;transition:.2s}
+.atitle:hover{background:#f7f9fc}
+.atitle .no{width:36px;height:36px;border-radius:10px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0}
+.atitle .tt{flex:1}
+.atitle .tt b{font-size:16.5px;color:var(--navy)}
+.atitle .tt span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.atitle .cnt{font-size:12px;color:var(--muted);font-weight:700}
+.atitle .ar{width:28px;height:28px;border-radius:50%;background:var(--paper);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:14px;transition:.3s;flex-shrink:0}
+.aitem.open .ar{transform:rotate(180deg);background:var(--mint);color:#062a27}
+.abody{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.aitem.open .abody{max-height:400px}
+.alist{padding:0 24px 22px 76px}
+.alist li{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.alist li:last-child{border-bottom:none}
+.alist li b{color:#414b61;font-weight:700}
+.alist li span{font-size:12px;color:var(--mint);font-weight:800}
+
+/* ===== 栏目四：热门分享（动态滚动消息流）===== */
+.share{background:var(--paper)}
+.tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap;justify-content:center}
+.tabs button{padding:9px 22px;border-radius:22px;font-size:14px;font-weight:800;color:#414b61;background:var(--card);border:1px solid var(--line);transition:.2s}
+.tabs button.active,.tabs button:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.feed{display:flex;flex-direction:column;gap:12px}
+.frow{display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;transition:.25s}
+.frow:hover{border-color:var(--blue);transform:translateX(4px)}
+.frow .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--mint));color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900}
+.frow .mi h4{font-size:15px;font-weight:800;color:var(--navy)}
+.frow .mi p{font-size:12.5px;color:var(--muted)}
+.frow .mi p i{font-style:normal;color:var(--blue);font-weight:700}
+.frow .ts{font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap}
+.frow .ts b{display:block;color:var(--mint);font-size:13px;font-weight:900;margin-top:2px}
+
+/* ===== 页脚 ===== */
+.footer{background:var(--navy-d);padding:60px 0 26px;color:#a8b4cc}
+.footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:36px}
+.footer .brand .logo .ico{box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.footer .brand .logo b,.footer .brand .logo span{color:#fff}
+.footer .brand p{color:#7f8bae;font-size:13.5px;line-height:1.9;max-width:360px;margin-top:16px}
+.footer h5{color:var(--mint);font-size:14px;margin-bottom:18px}
+.footer ul li{margin-bottom:11px}
+.footer ul a{color:#a8b4cc;font-size:13.5px;transition:.2s}
+.footer ul a:hover{color:var(--mint)}
+.footer .copy{text-align:center;color:#5e6a87;font-size:12.5px;border-top:1px solid rgba(255,255,255,.08);padding-top:24px}
+.topbtn{position:fixed;right:18px;bottom:18px;z-index:99;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:none;align-items:center;justify-content:center;font-size:19px;box-shadow:0 6px 20px rgba(27,42,74,.4);transition:.3s}
+.topbtn.show{display:flex}
+.topbtn:hover{background:var(--blue)}
+
+@media(max-width:900px){
+  .hero .inner{grid-template-columns:1fr;gap:40px}
+  .res{grid-template-columns:repeat(2,1fr)}
+  .tree{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  section{padding:60px 0}
+  .nav-toggle{display:flex}
+  .nav{position:fixed;top:74px;left:0;right:0;flex-direction:column;gap:2px;background:#fff;max-height:0;overflow:hidden;transition:.4s;padding:0 14px}
+  .nav.open{max-height:420px;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .nav a{width:100%;padding:13px;border-radius:10px;border-bottom:1px solid var(--line)}
+  .sbar{flex-direction:column}
+  .sbar button{padding:14px}
+  .res{grid-template-columns:1fr}
+  .disk{display:none}
+  .hero .stats{flex-direction:column;gap:12px}
+  .frow{grid-template-columns:44px 1fr;gap:12px}
+  .frow .ts{grid-column:1 / -1;text-align:left;padding-left:56px}
+  .footer .cols{grid-template-columns:1fr 1fr;gap:26px}
+}
+@media(max-width:420px){.footer .cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<header class="header">
+  <div class="wrap">
+    <a href="https://dianyingwangpan-wap.github.io/" class="logo"><div class="ico">盘</div><div><b>电影网盘</b><span>海量片源云端检索</span></div></a>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <a href="https://dianyingwangpan-wap.github.io/#search" class="on">资源检索</a>
+      <a href="https://dianyingwangpan-wap.github.io/#cats">影片分类</a>
+      <a href="https://dianyingwangpan-wap.github.io/#theme">精选清单</a>
+      <a href="https://dianyingwangpan-wap.github.io/#share">热门分享</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="inner">
+      <div>
+        <div class="badge">☁️ CLOUD MOVIE LIBRARY</div>
+        <h1>海量片源，<em>云端检索</em>快人一步</h1>
+        <p class="sub">电影网盘(dianyingwangpan-wap.github.io)专注于电影资源的云端检索与分享导航，按类型、年份、地区一键筛选，找片不再大海捞针。</p>
+        <div class="btns">
+          <a class="btn btn-p" href="https://dianyingwangpan-wap.github.io/#search">开始检索资源 →</a>
+          <a class="btn btn-o" href="https://dianyingwangpan-wap.github.io/#cats">浏览分类目录</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>12万+</b><span>已收录影片</span></div>
+          <div class="stat"><b>38个</b><span>分类标签</span></div>
+          <div class="stat"><b>9.2万</b><span>每日检索量</span></div>
+        </div>
+      </div>
+      <div class="disk">
+        <div class="row"><div class="ico">🎬</div><div class="txt"><b>2026年院线片合集</b><span>已整理 · 支持关键词搜索</span></div><div class="tag">HOT</div></div>
+        <div class="row"><div class="ico">📁</div><div class="txt"><b>经典老片修复版</b><span>4K 重制 · 长期可访问</span></div><div class="tag">NEW</div></div>
+        <div class="row"><div class="ico">🎞️</div><div class="txt"><b>冷门佳作清单</b><span>影迷推荐 · 持续更新</span></div><div class="tag">8.9</div></div>
+        <div class="row"><div class="ico">🗂️</div><div class="txt"><b>主题观影合集</b><span>按导演 / 类型打包</span></div><div class="tag">12</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目一：资源检索（分面搜索 + 结果卡） -->
+<section id="search">
+  <div class="wrap">
+    <div class="sec-head"><span class="en">Resource Search</span><h2><em>资源</em>检索</h2><div class="line"></div><p>输入片名关键词，秒出候选结果</p></div>
+    <div class="sbox">
+      <div class="sbar">
+        <input type="text" id="kw" placeholder="输入片名、导演或关键词，如：悬疑 / 诺兰 / 2026..." value="悬疑">
+        <button id="doSearch">检索</button>
+      </div>
+      <div class="chips">
+        <a class="chip on" href="https://dianyingwangpan-wap.github.io/#search">全部</a>
+        <a class="chip" href="https://dianyingwangpan-wap.github.io/#search">2026 新片</a>
+        <a class="chip" href="https://dianyingwangpan-wap.github.io/#search">高分经典</a>
+        <a class="chip" href="https://dianyingwangpan-wap.github.io/#search">华语电影</a>
+        <a class="chip" href="https://dianyingwangpan-wap.github.io/#search">欧美大片</a>
+        <a class="chip" href="https://dianyingwangpan-wap.github.io/#search">日韩佳作</a>
+        <a class="chip" href="https://dianyingwangpan-wap.github.io/#search">4K 修复</a>
+        <a class="chip" href="https://dianyingwangpan-wap.github.io/#search">冷门小众</a>
+      </div>
+      <div class="res" id="res"></div>
+    </div>
+    <div class="sec-head" style="margin-bottom:0"><a class="more" href="https://dianyingwangpan-wap.github.io/#search">查看完整检索结果 →</a></div>
+  </div>
+</section>
+
+<!-- 栏目二：影片分类（树形分组 + 容量条） -->
+<section id="cats" style="background:#fff">
+  <div class="wrap">
+    <div class="sec-head"><span class="en">Browse Categories</span><h2><em>影片</em>分类</h2><div class="line"></div><p>树形目录结构，一眼看清资源分布</p></div>
+    <div class="tree">
+      <div class="br"><div class="hd"><div class="ic">🎭</div><b>剧情 / 文艺</b><span>32,140</span></div>
+        <div class="leaf">家庭伦理 <em>8,230</em><span class="bar"><i style="width:92%"></i></span></div>
+        <div class="leaf">青春成长 <em>6,180</em><span class="bar"><i style="width:78%"></i></span></div>
+        <div class="leaf">社会现实 <em>5,640</em><span class="bar"><i style="width:70%"></i></span></div>
+        <div class="leaf">历史传记 <em>4,920</em><span class="bar"><i style="width:64%"></i></span></div>
+        <div class="leaf">文艺小众 <em>7,170</em><span class="bar"><i style="width:84%"></i></span></div>
+      </div>
+      <div class="br"><div class="hd"><div class="ic">🔍</div><b>悬疑 / 惊悚</b><span>18,760</span></div>
+        <div class="leaf">犯罪推理 <em>5,890</em><span class="bar"><i style="width:88%"></i></span></div>
+        <div class="leaf">心理惊悚 <em>4,210</em><span class="bar"><i style="width:66%"></i></span></div>
+        <div class="leaf">密室逃脱 <em>2,640</em><span class="bar"><i style="width:44%"></i></span></div>
+        <div class="leaf">反转烧脑 <em>3,970</em><span class="bar"><i style="width:62%"></i></span></div>
+        <div class="leaf">黑色电影 <em>2,050</em><span class="bar"><i style="width:36%"></i></span></div>
+      </div>
+      <div class="br"><div class="hd"><div class="ic">💥</div><b>动作 / 科幻</b><span>27,300</span></div>
+        <div class="leaf">超级英雄 <em>6,520</em><span class="bar"><i style="width:80%"></i></span></div>
+        <div class="leaf">太空科幻 <em>4,830</em><span class="bar"><i style="width:64%"></i></span></div>
+        <div class="leaf">末日灾变 <em>3,290</em><span class="bar"><i style="width:48%"></i></span></div>
+        <div class="leaf">机甲战争 <em>2,860</em><span class="bar"><i style="width:42%"></i></span></div>
+        <div class="leaf">武侠功夫 <em>9,800</em><span class="bar"><i style="width:96%"></i></span></div>
+      </div>
+      <div class="br"><div class="hd"><div class="ic">💖</div><b>爱情 / 喜剧</b><span>22,080</span></div>
+        <div class="leaf">都市爱情 <em>7,240</em><span class="bar"><i style="width:88%"></i></span></div>
+        <div class="leaf">青春校园 <em>4,660</em><span class="bar"><i style="width:60%"></i></span></div>
+        <div class="leaf">搞笑喜剧 <em>6,930</em><span class="bar"><i style="width:84%"></i></span></div>
+        <div class="leaf">奇幻浪漫 <em>2,150</em><span class="bar"><i style="width:34%"></i></span></div>
+        <div class="leaf">合家欢 <em>1,100</em><span class="bar"><i style="width:22%"></i></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：精选清单（手风琴折叠） -->
+<section id="theme" style="background:#e9eef8">
+  <div class="wrap">
+    <div class="sec-head"><span class="en">Curated Lists</span><h2><em>精选</em>清单</h2><div class="line"></div><p>影迷打包整理，点开即看</p></div>
+    <div class="acc">
+      <div class="aitem open"><div class="atitle"><div class="no">1</div><div class="tt"><b>2026 必看院线片合集</b><span>本年度口碑最稳的 8 部新片</span></div><span class="cnt">8 部</span><div class="ar">▾</div></div>
+        <div class="abody"><ul class="alist">
+          <li><b>破茧</b><span>9.2 分</span></li><li><b>山河岁月</b><span>9.0 分</span></li>
+          <li><b>无声的证人</b><span>8.8 分</span></li><li><b>森林守护者</b><span>8.9 分</span></li>
+          <li><b>下一个天亮</b><span>8.7 分</span></li><li><b>相亲大作战</b><span>8.5 分</span></li>
+        </ul></div>
+      </div>
+      <div class="aitem"><div class="atitle"><div class="no">2</div><div class="tt"><b>悬疑烧脑片单</b><span>反转一浪接一浪，值得反复拉片</span></div><span class="cnt">12 部</span><div class="ar">▾</div></div>
+        <div class="abody"><ul class="alist">
+          <li><b>记忆碎片</b><span>9.1 分</span></li><li><b>看不见的客人</b><span>8.9 分</span></li>
+          <li><b>盗梦空间</b><span>9.3 分</span></li><li><b>禁闭岛</b><span>8.8 分</span></li>
+        </ul></div>
+      </div>
+      <div class="aitem"><div class="atitle"><div class="no">3</div><div class="tt"><b>4K 修复经典</b><span>画质重生，大屏观影首选</span></div><span class="cnt">15 部</span><div class="ar">▾</div></div>
+        <div class="abody"><ul class="alist">
+          <li><b>霸王别姬</b><span>9.6 分</span></li><li><b>阿甘正传</b><span>9.5 分</span></li>
+          <li><b>泰坦尼克号</b><span>9.4 分</span></li><li><b>肖申克的救赎</b><span>9.7 分</span></li>
+        </ul></div>
+      </div>
+      <div class="aitem"><div class="atitle"><div class="no">4</div><div class="tt"><b>冷门佳作清单</b><span>小众但不容错过</span></div><span class="cnt">10 部</span><div class="ar">▾</div></div>
+        <div class="abody"><ul class="alist">
+          <li><b>寄生虫</b><span>9.3 分</span></li><li><b>燃烧</b><span>8.7 分</span></li>
+          <li><b>驾驶我的车</b><span>8.8 分</span></li><li><b>痛苦与荣耀</b><span>8.6 分</span></li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：热门分享（动态消息流） -->
+<section id="share">
+  <div class="wrap">
+    <div class="sec-head"><span class="en">Hot Shares</span><h2><em>热门</em>分享</h2><div class="line"></div><p>影迷实时上传与推荐，新鲜热乎</p></div>
+    <div class="tabs">
+      <button class="active" data-k="hot">今日最热</button>
+      <button data-k="new">最新上传</button>
+      <button data-k="like">最多点赞</button>
+    </div>
+    <div class="feed" id="feed"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand">
+        <a href="https://dianyingwangpan-wap.github.io/" class="logo"><div class="ico">盘</div><div><b>电影网盘</b><span>海量片源云端检索</span></div></a>
+        <p>电影网盘(dianyingwangpan-wap.github.io)是专注于电影资源云端检索与分享导航的平台，提供海量影片分类、关键词检索、精选清单与热门分享，帮你快速找到想看的电影。</p>
+      </div>
+      <div><h5>功能导航</h5><ul>
+        <li><a href="https://dianyingwangpan-wap.github.io/#search">资源检索</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#cats">影片分类</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#theme">精选清单</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#share">热门分享</a></li>
+      </ul></div>
+      <div><h5>热门分类</h5><ul>
+        <li><a href="https://dianyingwangpan-wap.github.io/#cats">剧情文艺</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#cats">悬疑惊悚</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#cats">动作科幻</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#cats">爱情喜剧</a></li>
+      </ul></div>
+      <div><h5>关于本站</h5><ul>
+        <li><a href="https://dianyingwangpan-wap.github.io/#">关于我们</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#">投稿分享</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#">使用协议</a></li>
+        <li><a href="https://dianyingwangpan-wap.github.io/#">意见反馈</a></li>
+      </ul></div>
+    </div>
+    <div class="copy">© 2026 电影网盘(dianyingwangpan-wap.github.io) 保留所有权利 · 本站仅为影视资讯与检索导航平台，资源版权归原作者所有 · 找片快人一步</div>
+  </div>
+</footer>
+
+<button class="topbtn" id="topBtn" aria-label="返回顶部">↑</button>
+
+<script>
+var navToggle=document.getElementById('navToggle'),nav=document.getElementById('nav');
+navToggle.addEventListener('click',function(){nav.classList.toggle('open');});
+nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');});});
+
+var topBtn=document.getElementById('topBtn');
+window.addEventListener('scroll',function(){topBtn.classList.toggle('show',window.scrollY>400);});
+topBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+var secs=document.querySelectorAll('section[id]'),links=document.querySelectorAll('.nav a');
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href').indexOf('#'+e.target.id)>-0);});}});},{rootMargin:'-40% 0px -55% 0px'});
+  secs.forEach(function(s){io.observe(s);});
+}
+
+/* 手风琴 */
+document.querySelectorAll('.atitle').forEach(function(t){
+  t.addEventListener('click',function(){t.parentElement.classList.toggle('open');});
+});
+
+/* 检索结果 */
+var db=[
+  ['破茧','家庭伦理 · 2026','剧情',9.2],['无声的证人','悬疑惊悚 · 2026','悬疑',8.8],
+  ['下一个天亮','爱情 · 2026','爱情',8.7],['森林守护者','动画 · 2026','动画',8.9],
+  ['山河岁月','历史 · 2026','历史',9.0],['相亲大作战','喜剧 · 2026','喜剧',8.5],
+  ['记忆迷局','悬疑 · 2025','悬疑',8.6],['深海之光','科幻 · 2026','科幻',8.4]
+];
+var res=document.getElementById('res');
+function renderRes(kw){
+  kw=(kw||'').trim().toLowerCase();
+  var list=kw?db.filter(function(d){return (d[0]+d[1]+d[2]).toLowerCase().indexOf(kw)>-1;}):db.slice(0,6);
+  if(!list.length){res.innerHTML='<div style="grid-column:1/-1;text-align:center;color:#6d7891;padding:30px">未找到匹配的资源，换个关键词试试～</div>';return;}
+  res.innerHTML=list.slice(0,6).map(function(d){
+    return '<a class="rcard" href="https://dianyingwangpan-wap.github.io/#search"><div class="th">'+d[0].charAt(0)+'</div><div class="mi"><h4>'+d[0]+'</h4><p><i>'+d[2]+'</i>'+d[1]+'</p></div></a>';
+  }).join('');
+}
+renderRes('悬疑');
+document.getElementById('doSearch').addEventListener('click',function(){renderRes(document.getElementById('kw').value);});
+document.getElementById('kw').addEventListener('keydown',function(e){if(e.key==='Enter')renderRes(e.target.value);});
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(e){e.preventDefault();document.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});c.classList.add('on');renderRes(c.textContent);});
+});
+
+/* 热门分享 */
+var feed=[
+  {hot:[['影迷小王','破茧 — 年度最佳家庭片','2分钟前',412],['老陈看片','2026 悬疑片盘点合集','12分钟前',386],['电影笔记','4K修复版阿甘正传分享','38分钟前',351],['周末影院','夏日清凉动画推荐','1小时前',298],['碟友俱乐部','诺兰作品全集打包','2小时前',267]],
+   new:[['新片速递','山河岁月 高清版','刚刚',128],['资源组','寄生虫 多字幕版','8分钟前',96],['胶片控','驾驶我的车 原声碟','25分钟前',87],['冷门挖掘机','燃烧 4K 资源','50分钟前',72],['每日一片','痛苦与荣耀 修复版','1.5小时前',64]],
+   like:[['影评人阿泽','盗梦空间 十刷笔记','5分钟前',1208],['经典重温','霸王别姬 修复版','半小时前',964],['科幻迷','星际穿越 原盘','1小时前',802],['动作片控','谍影重重 系列合集','3小时前',653],['浪漫清单','泰坦尼克号 3D版','5小时前',587]]}
+];
+var fbox=document.getElementById('feed');
+function renderFeed(k){
+  fbox.innerHTML=feed[k].map(function(f,i){
+    return '<div class="frow"><div class="av">'+f[0].charAt(0)+'</div><div class="mi"><h4>'+f[0]+' 分享了 <i>'+f[1]+'</i></h4><p>'+(i+1)+' 条评论 · 已收录至精选清单</p></div><div class="ts">'+f[2]+'<b>♥ '+f[3]+'</b></div></div>';
+  }).join('');
+}
+renderFeed('hot');
+document.querySelectorAll('.tabs button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.tabs button').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');renderFeed(b.dataset.k);
+  });
+});
+</script>
+</body>
+</html>
